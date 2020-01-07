@@ -7,7 +7,7 @@ namespace CommonBase.Extensions
         {
             if(source == null)
             {
-                throw new ArgumentNullExeption(name);
+                throw new ArgumentNullException(name);
             }
         }
     }
