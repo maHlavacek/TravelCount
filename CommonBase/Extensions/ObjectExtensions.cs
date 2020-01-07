@@ -1,14 +1,13 @@
-using System;
+﻿using System;
+
 namespace CommonBase.Extensions
 {
-    public static class ObjectExtension
+    public static class ObjectExtensions
     {
         public static void CheckArgument(this object source, string name)
         {
-            if(source == null)
-            {
+            if (source == null)
                 throw new ArgumentNullException(name);
-            }
         }
     }
 }

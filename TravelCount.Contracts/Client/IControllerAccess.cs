@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,10 +8,10 @@ namespace TravelCount.Contracts.Client
     /// This interface defines the basic properties and basic operations for accessing the controller.
     /// </summary>
     /// <typeparam name="T">Type, which the basic operations relate.</typeparam>
-    public partial interface IControllerAccess<T> : IDisposable 
-        where T : Contracts.IIdentifiable
+	public partial interface IControllerAccess<T> : IDisposable
+        where T : IIdentifiable
     {
-          #region Async-Methods
+        #region Async-Methods
         /// <summary>
         /// Gets the number of quantity in the collection.
         /// </summary>

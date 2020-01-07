@@ -1,23 +1,29 @@
-﻿using System;
+﻿using CommonBase.Extensions;
 using System.Collections.Generic;
-using System.Text;
 using TravelCount.Contracts.Persistence;
 
 namespace TravelCount.Logic.Entities.Persistence
 {
-    public class Travel : ITravel
+    internal class Travel : IdentityObject, ITravel
     {
         public string Designation { get; set; }
-        public string Description { get ; set; }
-        public string Currency { get ; set ; }
-        public string Friends { get ; set ; }
-        public string Category { get ; set ; }
-
-        public int Id => throw new NotImplementedException();
+        public string Description { get; set; }
+        public string Currency { get; set; }
+        public string Friends { get; set; }
+        public string Category { get; set; }
 
         public void CopyProperties(ITravel other)
         {
-            throw new NotImplementedException();
+            other.CheckArgument(nameof(other));
+
+            Id = other.Id;
+            Designation = other.Designation;
+            Designation = other.Description;
+            Currency = other.Currency;
+            Friends = other.Friends;
+            Category = other.Category;
         }
+
+        IEnumerable<Expense> Expenses { get; set; }
     }
 }

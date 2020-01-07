@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TravelCount.Contracts;
 using TravelCount.Contracts.Persistence;
 
 namespace TravelCount.Logic.Entities.Persistence
@@ -19,11 +18,14 @@ namespace TravelCount.Logic.Entities.Persistence
         {
             other.CheckArgument(nameof(other));
 
+            Id = other.Id;
             TravelId = other.TravelId;
             Date = other.Date;
             Description = other.Description;
             Amount = other.Amount;
             Friend = other.Friend;
         }
+
+        public Travel Travel { get; set; }
     }
 }
