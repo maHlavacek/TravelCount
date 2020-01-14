@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TravelCount.ConApp\TravelCount.ConApp.csproj" />
+    <ProjectReference Include="..\CommonBase\CommonBase.csproj" />
     <ProjectReference Include="..\TravelCount.Contracts\TravelCount.Contracts.csproj" />
     <ProjectReference Include="..\TravelCount.Logic\TravelCount.Logic.csproj" />
     <ProjectReference Include="..\TravelCount.Transfer\TravelCount.Transfer.csproj" />
