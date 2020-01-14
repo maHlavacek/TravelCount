@@ -15,4 +15,8 @@
     <ProjectReference Include="..\CommonBase\CommonBase.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Business\" />
+  </ItemGroup>
+
 </Project>
