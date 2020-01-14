@@ -10,8 +10,8 @@ using TravelCount.Logic.DataContext.Db;
 namespace TravelCount.Logic.Migrations
 {
     [DbContext(typeof(DbTravelCountContext))]
-    [Migration("20200107201146_InitMigration")]
-    partial class InitMigration
+    [Migration("20200114183912_InitDb")]
+    partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,7 +72,6 @@ namespace TravelCount.Logic.Migrations
                         .HasMaxLength(10);
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 

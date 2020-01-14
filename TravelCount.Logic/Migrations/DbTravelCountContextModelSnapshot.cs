@@ -70,7 +70,6 @@ namespace TravelCount.Logic.Migrations
                         .HasMaxLength(10);
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 

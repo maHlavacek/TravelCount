@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TravelCount.Logic.Migrations
 {
-    public partial class InitMigration : Migration
+    public partial class InitDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace TravelCount.Logic.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Designation = table.Column<string>(maxLength: 256, nullable: false),
-                    Description = table.Column<string>(maxLength: 256, nullable: false),
+                    Description = table.Column<string>(maxLength: 256, nullable: true),
                     Currency = table.Column<string>(maxLength: 10, nullable: false),
                     Friends = table.Column<string>(maxLength: 1024, nullable: false),
                     Category = table.Column<string>(maxLength: 64, nullable: false)
