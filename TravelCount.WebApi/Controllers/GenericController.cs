@@ -10,5 +10,30 @@ namespace TravelCount.WebApi.Controllers
         where M : Transfer.TransferObject, I, Contracts.ICopyable<I>, new()
         where I : Contracts.IIdentifiable
     {
+        protected Contracts.Client.IControllerAccess<I> CreateController()
+        {
+            return Logic.Factory.Create<I>();
+        }
+
+        protected async Task<int> CountAsync()
+        {
+            using var ctrl = CreateController();
+
+            return await ctrl.CountAsync();
+        }
+
+        protected async Task<IEnumerable<I>> GetAllAsync()
+        {
+            using var ctrl = CreateController();
+
+            return await ctrl.GetAllAsync();
+        }
+        
+        protected async Task<I> GetByIdAsync(int id)
+        {
+            using var ctrl = CreateController();
+
+            return await ctrl.GetByIdAsync(id);
+        }
     }
 }
