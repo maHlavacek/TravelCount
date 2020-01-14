@@ -1,16 +1,18 @@
 ﻿using CommonBase.Extensions;
+using System;
 using System.Collections.Generic;
+using System.Text;
 using TravelCount.Contracts.Persistence;
 
-namespace TravelCount.Logic.Entities.Persistence
+namespace TravelCount.Transfer.Persistence
 {
-    internal class Travel : IdentityObject, ITravel
+    public class Travel : TransferObject, ITravel, Contracts.ICopyable<ITravel>
     {
-        public string Designation { get; set; }
-        public string Description { get; set; }
-        public string Currency { get; set; }
-        public string Friends { get; set; }
-        public string Category { get; set; }
+        public string Designation { get ; set ; }
+        public string Description { get ; set; }
+        public string Currency { get ; set ; }
+        public string Friends { get ; set ; }
+        public string Category { get ; set ; }
 
         public void CopyProperties(ITravel other)
         {
@@ -23,7 +25,5 @@ namespace TravelCount.Logic.Entities.Persistence
             Friends = other.Friends;
             Category = other.Category;
         }
-
-        IEnumerable<Expense> Expenses { get; set; }
     }
 }
