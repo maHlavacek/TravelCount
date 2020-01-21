@@ -1,4 +1,6 @@
-﻿using System;
+﻿//@DomainCode
+//MdStart
+using System;
 using TravelCount.Contracts.Client;
 
 namespace TravelCount.Logic
@@ -12,7 +14,7 @@ namespace TravelCount.Logic
             //Ser,
         }
         public static PersistenceType Persistence { get; set; } = Factory.PersistenceType.Db;
-        private static DataContext.IContext CreateContext()
+        internal static DataContext.IContext CreateContext()
         {
             DataContext.IContext result = null;
 
@@ -20,14 +22,6 @@ namespace TravelCount.Logic
             {
                 result = new DataContext.Db.DbTravelCountContext();
             }
-            //else if (Persistence == PersistenceType.Csv)
-            //{
-            //    result = new DataContext.Csv.CsvTravelCountContext();
-            //}
-            //else if (Persistence == PersistenceType.Ser)
-            //{
-            //    result = new DataContext.Ser.SerTravelCountContext();
-            //}
             return result;
         }
 
@@ -85,5 +79,11 @@ namespace TravelCount.Logic
 
             return new Controllers.Persistence.ExpenseController(controller);
         }
+
+        public static IControllerAccess<Contracts.Business.ITravelExpense> CreateTravelExpenseController()
+        {
+            return new Controllers.Business.TravelExpenseController(CreateContext());
+        }
     }
 }
+//MdEnd

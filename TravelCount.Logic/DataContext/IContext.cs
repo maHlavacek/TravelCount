@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//@BaseCode
+//MdStart
+using System;
 using System.Threading.Tasks;
 using TravelCount.Contracts;
 using TravelCount.Logic.Entities;
@@ -18,11 +18,11 @@ namespace TravelCount.Logic.DataContext
             where I : IIdentifiable
             where E : IdentityObject, ICopyable<I>, I, new();
 
-        Task<E> InsertAsync<I, E>(I entity)
+        Task<E> InsertAsync<I, E>(E entity)
             where I : IIdentifiable
             where E : IdentityObject, ICopyable<I>, I, new();
 
-        Task<E> UpdateAsync<I, E>(I entity)
+        Task<E> UpdateAsync<I, E>(E entity)
             where I : IIdentifiable
             where E : IdentityObject, ICopyable<I>, I, new();
 
@@ -34,3 +34,4 @@ namespace TravelCount.Logic.DataContext
         #endregion Async-Methods
     }
 }
+//MdEnd

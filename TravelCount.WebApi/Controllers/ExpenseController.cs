@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Contract = TravelCount.Contracts.Persistence.ITravel;
-using Model = TravelCount.Transfer.Persistence.Travel;
+using Contract = TravelCount.Contracts.Persistence.IExpense;
+using Model = TravelCount.Transfer.Persistence.Expense;
 
 namespace TravelCount.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TravelController : GenericController<Contract, Model>
+    public class ExpenseController : GenericController<Contract, Model>
     {
 		[HttpGet("/api/[controller]/Count")]
 		public Task<int> GetCountAsync()
@@ -20,7 +20,7 @@ namespace TravelCount.WebApi.Controllers
 		[HttpGet("/api/[controller]/Get")]
 		public Task<IEnumerable<Contract>> GetAsync()
 		{
-			return GetAllAsync();
+			return base. GetAllAsync();
 		}
 
 		// GET: api/Travel/5

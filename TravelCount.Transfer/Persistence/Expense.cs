@@ -1,20 +1,16 @@
 ﻿using CommonBase.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TravelCount.Contracts.Persistence;
 
 namespace TravelCount.Transfer.Persistence
 {
     public class Expense : TransferObject, IExpense, Contracts.ICopyable<IExpense>
     {
-        public int TravelId { get ; set ; }
-
+        public int TravelId { get; set; }
         public DateTime Date { get; set; }
-
-        public string Description { get ; set ; }
-        public double Amount { get ; set ; }
-        public string Friend { get ; set ; }
+        public string Description { get; set; }
+        public double Amount { get; set; }
+        public string Friend { get; set; }
 
         public void CopyProperties(IExpense other)
         {

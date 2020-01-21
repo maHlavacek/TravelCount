@@ -1,4 +1,7 @@
-﻿using System;
+﻿//@BaseCode
+//MdStart
+using CommonBase.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -49,6 +52,10 @@ namespace TravelCount.Logic.Controllers
                 return result;
             });
         }
+        internal virtual Task<IEnumerable<E>> QueryAsync(Func<E, bool> predicate)
+        {
+            return Task.Run(() => Set.Where(predicate));
+        }
         public virtual Task<IEnumerable<I>> GetAllAsync()
         {
             return Task.Run<IEnumerable<I>>(() =>
@@ -65,14 +72,22 @@ namespace TravelCount.Logic.Controllers
             return Task.Run<I>(() => new E());
         }
 
-        protected virtual Task BeforeInsertingAsync(I entity)
+        protected virtual Task BeforeInsertingAsync(E entity)
         {
             return Task.FromResult(0);
         }
-        public virtual async Task<I> InsertAsync(I entity)
+        public virtual Task<I> InsertAsync(I entity)
         {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
+            entity.CheckArgument(nameof(entity));
+
+            var entityModel = new E();
+
+            entityModel.CopyProperties(entity);
+            return InsertAsync(entityModel);
+        }
+        public virtual async Task<I> InsertAsync(E entity)
+        {
+            entity.CheckArgument(nameof(entity));
 
             await BeforeInsertingAsync(entity);
             var result = await Context.InsertAsync<I, E>(entity);
@@ -84,26 +99,35 @@ namespace TravelCount.Logic.Controllers
             return Task.FromResult(0);
         }
 
-        protected virtual Task BeforeUpdatingAsync(I entity)
+        protected virtual Task BeforeUpdatingAsync(E entity)
         {
             return Task.FromResult(0);
         }
-        public virtual async Task UpdateAsync(I entity)
+        public virtual async Task<I> UpdateAsync(I entity)
         {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
+            entity.CheckArgument(nameof(entity));
 
-            await BeforeUpdatingAsync(entity);
-            var updateEntity = await Context.UpdateAsync<I, E>(entity);
+            var entityModel = Set.SingleOrDefault(i => i.Id == entity.Id);
 
-            if (updateEntity != null)
+            if (entityModel != null)
             {
-                await AfterUpdatedAsync(updateEntity);
+                entityModel.CopyProperties(entity);
+                var result = await UpdateAsync(entityModel);
+                return result;
             }
             else
             {
                 throw new Exception("Entity can't find!");
             }
+        }
+        public virtual async Task<I> UpdateAsync(E entity)
+        {
+            entity.CheckArgument(nameof(entity));
+
+            await BeforeUpdatingAsync(entity);
+            var result = await Context.UpdateAsync<I, E>(entity);
+            await AfterUpdatedAsync(entity);
+            return result;
         }
         protected virtual Task AfterUpdatedAsync(E entity)
         {
@@ -136,3 +160,4 @@ namespace TravelCount.Logic.Controllers
         #endregion Async-Methods
     }
 }
+//MdEnd

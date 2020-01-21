@@ -1,4 +1,6 @@
-﻿using System;
+﻿//@DomainCode
+//MdStart
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TravelCount.Contracts.Persistence;
@@ -22,8 +24,10 @@ namespace TravelCount.Logic.Controllers.Persistence
 		public override async Task<IExpense> CreateAsync()
 		{
 			var result = await base.CreateAsync();
+
 			((Entities.Persistence.Expense)result).Date = DateTime.Now;
 			return result;
 		}
 	}
 }
+//MdEnd

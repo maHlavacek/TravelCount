@@ -1,4 +1,6 @@
-﻿using System;
+﻿//@BaseCode
+//MdStart
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -43,7 +45,8 @@ namespace TravelCount.Contracts.Client
         /// The entity is being tracked by the context and exists in the repository, and some or all of its property values have been modified.
         /// </summary>
         /// <param name="entity">The entity which is to be updated.</param>
-        Task UpdateAsync(T entity);
+        /// <returns>The the modified entity.</returns>
+        Task<T> UpdateAsync(T entity);
         /// <summary>
         /// Removes the entity from the repository with the appropriate identity.
         /// </summary>
@@ -56,3 +59,4 @@ namespace TravelCount.Contracts.Client
         #endregion Async-Methods
     }
 }
+//MdEnd
